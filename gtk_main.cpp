@@ -1,17 +1,41 @@
 #include <gtkmm.h>
+#include <iostream>
 
 class MyWindow : public Gtk::Window {
 public:
-  MyWindow();
+  Gtk::Button hello_button;
+
+  MyWindow() { setup_ui(); }
+
+  void setup_ui() {
+    set_title("Basic Application");
+    set_default_size(200, 200);
+
+    hello_button.set_label("Click Me");
+    hello_button.set_margin(20);
+
+    // Add the button to the window
+    set_child(hello_button);
+
+    // Connect the signal
+    hello_button.signal_clicked().connect(
+        sigc::mem_fun(*this, &MyWindow::on_button_clicked));
+  }
+
+private:
+  void on_button_clicked() { std::cout << "Hello Button!" << std::endl; }
 };
 
-MyWindow::MyWindow() {
-  set_title("Basic application");
-  set_default_size(200, 200);
-}
-
 int main(int argc, char *argv[]) {
-  auto app = Gtk::Application::create("org.gtkmm.examples.base");
+  auto app = Gtk::Application::create("org.gtkmm.example");
 
-  return app->make_window_and_run<MyWindow>(argc, argv);
+  auto window = std::make_shared<MyWindow>();
+
+  // Present the window using the Gtk::Application instance
+  app->signal_activate().connect([&app, window]() {
+    app->add_window(*window); // Register the window with the app
+    window->present();        // Show the window
+  });
+
+  return app->run(argc, argv);
 }
