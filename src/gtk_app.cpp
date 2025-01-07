@@ -1,5 +1,5 @@
+#include "../include/core.h"
 #include <gtkmm.h>
-#include <iostream>
 
 class MyWindow : public Gtk::Window {
 public:
@@ -9,7 +9,7 @@ public:
 
   void setup_ui() {
     set_title("Basic Application");
-    set_default_size(200, 200);
+    set_default_size(1280, 720);
 
     hello_button.set_label("Click Me");
     hello_button.set_margin(20);
@@ -18,12 +18,11 @@ public:
     set_child(hello_button);
 
     // Connect the signal
-    hello_button.signal_clicked().connect(
-        sigc::mem_fun(*this, &MyWindow::on_button_clicked));
-  }
+    // hello_button.signal_clicked().connect(sigc::mem_fun(*this,
+    // &save(SOURCE)));
 
-private:
-  void on_button_clicked() { std::cout << "Hello Button!" << std::endl; }
+    hello_button.signal_clicked().connect([this]() { save(SOURCE); });
+  }
 };
 
 int main(int argc, char *argv[]) {
