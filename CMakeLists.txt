@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set your project name
-project(gtk_main)
+project(gtk_multimedia_organiser)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -16,8 +16,8 @@ link_directories(${GTKMM_LIBRARY_DIRS})
 add_definitions(${GTKMM_CFLAGS_OTHER})
 
 # Specify your source files
-add_executable(gtk_main gtk_main.cpp)
+add_executable(gtk_multimedia_organiser src/core.cpp src/main.cpp )
 
 # Link the gtkmm libraries
-target_link_libraries(gtk_main ${GTKMM_LIBRARIES})
+target_link_libraries(gtk_multimedia_organiser ${GTKMM_LIBRARIES})
 
