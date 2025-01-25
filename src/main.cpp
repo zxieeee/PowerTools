@@ -1,8 +1,9 @@
-#include "../include/core.h"
+#include "../include/config.h"
+#include <unordered_map>
 
-int main() {
-  // TODO: Hardcoding Downloads directory using platform specific Env Variables
-  // to be fixed in the future
-  movefile_indir(SOURCE);
-  return 0;
+int main() 
+{
+    ConfigParser config("C:/Users/Amit Mishra/gtk_multimedia_organiser/include/config.config");
+    config.printConfig(); 
+    return 0;
 }
