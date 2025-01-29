@@ -21,7 +21,7 @@ public:
     // hello_button.signal_clicked().connect(sigc::mem_fun(*this,
     // &save(SOURCE)));
 
-    hello_button.signal_clicked().connect([this]() { save(SOURCE); });
+    // hello_button.signal_clicked().connect([this]() { save(SOURCE); });
   }
 };
 

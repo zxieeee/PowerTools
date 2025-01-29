@@ -1,9 +1,11 @@
 #include "../include/config.h"
-#include <unordered_map>
 
-int main() 
-{
-    ConfigParser config("C:/Users/Amit Mishra/gtk_multimedia_organiser/include/config.config");
-    config.printConfig(); 
-    return 0;
+int main() {
+  const std::string filename =
+      "/home/himanshu/code/gtk_multimedia_organiser/include/config.conf";
+  ConfigParser parsed;
+  parsed.parseConfigFile(filename);
+
+  parsed.printConfig();
+  return 0;
 }

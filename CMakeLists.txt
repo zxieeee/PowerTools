@@ -16,7 +16,12 @@ link_directories(${GTKMM_LIBRARY_DIRS})
 add_definitions(${GTKMM_CFLAGS_OTHER})
 
 # Specify your source files
-add_executable(gtk_multimedia_organiser src/core.cpp src/main.cpp )
+set(SRC_FILES
+    src/main.cpp
+    src/core.cpp
+    src/config.cpp
+)
+add_executable(gtk_multimedia_organiser ${SRC_FILES} )
 
 # Link the gtkmm libraries
 target_link_libraries(gtk_multimedia_organiser ${GTKMM_LIBRARIES})

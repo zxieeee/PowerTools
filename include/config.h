@@ -1,20 +1,14 @@
-#ifndef CORE_H
-#define CORE_H
-
+#pragma once
 #include <string>
 #include <unordered_map>
 
-class ConfigParser 
-{
+class ConfigParser {
 public:
-    ConfigParser(const std::string& filename);
-    // std::string get(const std::string& key, const std::string& default_value = "") const;
-    void printConfig() const;
+  void parseConfigFile(const std::string &filename);
+  // std::string get(const std::string &key,
+  //                 const std::string &default_value = "") const;
+  void printConfig();
 
-private:
-    std::unordered_map<std::string, std::string> config;
+  std::unordered_map<std::string, std::unordered_map<std::string, std::string>>
+      config;
 };
-
-
-
-#endif 

@@ -18,6 +18,3 @@ git clone https://github.com/zxieeee/gtk_multimedia_organiser.git
 g++ src/main.cpp src/core.cpp -o gtk_multimedia_organiser
 ```
 
-```
-
-```
