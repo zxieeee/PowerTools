@@ -1,22 +1,28 @@
 #include "../include/config.h"
+#include "../include/global.h"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <unordered_map>
+#include <string>
+#include <vector>
 
 // NOTE: I was unsure whether to have thisfunction called in constructor because
 // it will iterate in directory many times so it would be problematic to keep it
 // in constructor
-//
-void ConfigParser::parseConfigFile(const std::string &filename) {
+configV ConfigParser::parseConfigFile(const std::string &filename) {
+  configV configV_umap;
+  std::string line;
+  std::string section, key, value;
+  std::vector<std::string> FILE_EXT;
+  std::string ext;
+  int i = 0;
+
   std::ifstream file(filename);
   if (!file.is_open()) {
     std::cerr << "Error opening the file: " << filename;
   }
 
-  std::string line;
-  std::string section, key, value;
   while (std::getline(file, line)) {
     if (line.empty() || line[0] == '#') {
       continue;
@@ -25,14 +31,13 @@ void ConfigParser::parseConfigFile(const std::string &filename) {
     // NOTE: adding support for reading sections such as [Source_dir1]
     if (line[0] == '[' && line.back() == ']') {
       section = line.substr(1, line.length() - 2);
-      config[section] = {};
+      configV_umap[section] = {};
       continue;
     }
     if (!section.empty()) {
       std::istringstream iss(line);
       std::getline(iss, key, '=');
       std::getline(iss, value);
-
       key.erase(key.begin(), std::find_if(key.begin(), key.end(), [](int ch) {
                   return !std::isspace(ch);
                 }));
@@ -40,25 +45,33 @@ void ConfigParser::parseConfigFile(const std::string &filename) {
       value.erase(value.begin(),
                   std::find_if(value.begin(), value.end(),
                                [](int ch) { return !std::isspace(ch); }));
-
-      config[section][key] = value;
+      std::stringstream ss(value);
+      FILE_EXT.clear();
+      while (std::getline(ss, ext, ',')) {
+        FILE_EXT.push_back(ext);
+        i++;
+      }
+      configV_umap[section][key] = FILE_EXT;
     }
     // std::cout << key << " = " << value << std::endl;
   }
+  return configV_umap;
 }
 
-void ConfigParser::printConfig() {
-  // Print parsed config
-  for (const auto &section : config) {
+// print for debug
+void ConfigParser::printConfig(configV configV_umap) {
+  for (const auto &section : configV_umap) {
     std::cout << "[" << section.first << "]\n";
-    for (const auto &pair : section.second) {
-      std::cout << pair.first << " = " << pair.second << "\n";
+
+    for (const auto &key : section.second) {
+      std::cout << key.first << " = ";
+
+      for (const auto &i : key.second) {
+        std::cout << i << " ";
+      }
+
+      std::cout << "\n";
     }
     std::cout << "\n";
   }
 }
-
-// std::string ConfigParser::get(const std::string& key, const std::string&
-// default_value) const {
-//     auto it = config.find(key);
-//     return it != config.end() ? it->second : default_value;
