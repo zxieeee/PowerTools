@@ -16,6 +16,17 @@ std::string getfile_ext(const std::filesystem::path &filename) {
                // which can allow us to return a nullptr but may be something
                // that is not needed
 }
+// function to detected the change in dir is made or not 
+bool isdirectorychanged(const std::string &path , std::filesystem::file_time_type &lastWriteTime )
+{
+  std::filesystem::file_time_type newWriteTime = std::filesystem::last_write_time(path);
+  if(newWriteTime != lastWriteTime)
+  {
+    lastWriteTime = newWriteTime;
+    return true;
+  }
+  return false;
+}
 
 void movefile_indir(const std::string &SOURCE) {
 
