@@ -12,16 +12,14 @@ std::string getfile_ext(const std::filesystem::path &filename) {
   if (!ext.empty() && ext.front() == '.') {
     return ext.substr(1);
   } else
-    return ""; // TODO: Returning emtpy string is fine. We can use <optional>
-               // which can allow us to return a nullptr but may be something
-               // that is not needed
+    return "";
 }
-// function to detected the change in dir is made or not 
-bool isdirectorychanged(const std::string &path , std::filesystem::file_time_type &lastWriteTime )
-{
-  std::filesystem::file_time_type newWriteTime = std::filesystem::last_write_time(path);
-  if(newWriteTime != lastWriteTime)
-  {
+// function to detected the change in dir is made or not
+bool isdirectorychanged(const std::string &path,
+                        std::filesystem::file_time_type &lastWriteTime) {
+  std::filesystem::file_time_type newWriteTime =
+      std::filesystem::last_write_time(path);
+  if (newWriteTime != lastWriteTime) {
     lastWriteTime = newWriteTime;
     return true;
   }
@@ -29,10 +27,6 @@ bool isdirectorychanged(const std::string &path , std::filesystem::file_time_typ
 }
 
 void movefile_indir(const std::string &SOURCE) {
-
-  // NOTE: Get files from the specified dir this can be consolidated into a
-  // function but then we have to read it aswell there wasnt muchto gain so i
-  // kept it in the same function
 
   for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
     std::filesystem::path SourceDir(SOURCE);

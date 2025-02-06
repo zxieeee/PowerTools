@@ -6,10 +6,6 @@
 #include <unordered_map>
 #include <vector>
 
-// NOTE: I was unsure whether to have thisfunction called in constructor because
-// it will iterate in directory many times so it would be problematic to keep it
-// in constructor
-//
 void ConfigParser::parseConfigFile(const std::string &filename) {
   std::ifstream file(filename);
   if (!file.is_open()) {
@@ -59,19 +55,12 @@ void ConfigParser::printConfig() {
   }
 }
 
-// std::string ConfigParser::get(const std::string& key, const std::string&
-// default_value) const {
-//     auto it = config.find(key);
-//     return it != config.end() ? it->second : default_value;
+// body pf function to genrate a config
 
-
-//body pf function to genrate a config
-
-void ConfigParser::generateConfigFileInteractively(const std::string &filename) 
-{
+void ConfigParser::generateConfigFileInteractively(
+    const std::string &filename) {
   std::ofstream file(filename);
-  if (!file.is_open()) 
-  {
+  if (!file.is_open()) {
     std::cerr << "Error creating the file: " << filename << std::endl;
     return;
   }
@@ -87,14 +76,12 @@ void ConfigParser::generateConfigFileInteractively(const std::string &filename)
 
   // for source directories
   int sourceDirCount = 0;
-  while (true) 
-  {
+  while (true) {
     std::string sourceDir;
     std::cout << "Enter source directory path (or type 'exit' to finish): ";
     std::getline(std::cin, sourceDir);
 
-    if (sourceDir == "exit") 
-    {
+    if (sourceDir == "exit") {
       break;
     }
 
@@ -104,15 +91,15 @@ void ConfigParser::generateConfigFileInteractively(const std::string &filename)
     file << "source_directory=" << sourceDir << "\n";
 
     // Prompt for file extensions for each category
-    std::vector<std::string> categories = {"images", "documents", "videos", "music", "others"};
-    for (const auto &category : categories) 
-    {
+    std::vector<std::string> categories = {"images", "documents", "videos",
+                                           "music", "others"};
+    for (const auto &category : categories) {
       std::string extensions;
-      std::cout << "Enter " << category << " extensions (comma-separated, e.g., .png,.jpg): ";
+      std::cout << "Enter " << category
+                << " extensions (comma-separated, e.g., .png,.jpg): ";
       std::getline(std::cin, extensions);
 
-      if (!extensions.empty()) 
-      {
+      if (!extensions.empty()) {
         file << category << "=" << extensions << "\n";
       }
     }
