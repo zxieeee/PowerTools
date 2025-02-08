@@ -9,7 +9,6 @@ std::string fileOperations::getfile_ext(const std::filesystem::path &filename) {
   } else
     return "";
 }
-// function to detected the change in dir is made or not
 bool isdirectorychanged(const std::string &path,
                         std::filesystem::file_time_type &lastWriteTime) {
   std::filesystem::file_time_type newWriteTime =
@@ -46,6 +45,11 @@ int fileOperations::attemptToMove(const std::filesystem::path &file_path,
   }
   return 0;
 }
+
+// path fileOperations::getPathfromConfig(const configV &configV_umap) {
+//   return SOURCE, DEST_PATH;
+// }
+// TODO: Implement getPathFromConfig function
 
 void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
   std::filesystem::path SourceDir(SOURCE);
@@ -84,8 +88,6 @@ void fileOperations::moveFileinDir(const std::string &SOURCE,
 }
 
 void fileOperations::organiseFolder(const configV &configV_umap) {
-  // key_value key_umap;
-
   std::string SOURCE;
   std::string DEST_PATH;
 
@@ -99,7 +101,6 @@ void fileOperations::organiseFolder(const configV &configV_umap) {
         if (configV_umap.count(section.first) &&
             configV_umap.at(section.first).count("source_path")) {
           SOURCE = configV_umap.at(section.first).at("source_path")[0];
-          std::cout << SOURCE << std::endl;
           if (configV_umap.count(section.first) &&
               configV_umap.at(section.first).count("dest_path")) {
             DEST_PATH = configV_umap.at(section.first).at("dest_path")[0];
@@ -108,7 +109,6 @@ void fileOperations::organiseFolder(const configV &configV_umap) {
           }
         }
         moveFileinDir(SOURCE, DEST_PATH, section.second);
-        // move file based on the key value map which is section.second here
       }
     }
   }

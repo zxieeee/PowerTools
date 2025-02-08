@@ -27,6 +27,7 @@ public:
                     const std::filesystem::path &dest_path);
   std::filesystem::path createFolder(const std::string &DEST_PATH,
                                      const std::filesystem::path &folder);
+  // path getPathfromConfig(const configV &configV_umap);
   void defaultMoveBehaviour(const std::string &SOURCE);
   void moveFileinDir(const std::string &SOURCE, const std::string &DEST_PATH,
                      const key_value &key_umap);

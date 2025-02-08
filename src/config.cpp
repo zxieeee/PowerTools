@@ -6,20 +6,15 @@
 #include <string>
 #include <vector>
 
-// Now our trim function remains the same
 std::string ConfigParser::trim(std::string str) {
-  // Remove leading spaces
   size_t start = str.find_first_not_of(" \t\n\r");
   if (start == std::string::npos) {
-    return ""; // String contains only whitespace
+    return "";
   }
-
-  // Remove trailing spaces
   size_t end = str.find_last_not_of(" \t\n\r");
-
-  // Return the trimmed substring
   return str.substr(start, end - start + 1);
 }
+
 configV ConfigParser::parseConfigFile(const std::string &filename) {
   configV configV_umap;
   std::string line;
@@ -60,7 +55,6 @@ configV ConfigParser::parseConfigFile(const std::string &filename) {
       }
       configV_umap[section][key_t] = FILE_EXT;
     }
-    // std::cout << key << " = " << value << std::endl;
   }
   return configV_umap;
 }
@@ -69,21 +63,16 @@ configV ConfigParser::parseConfigFile(const std::string &filename) {
 void ConfigParser::printConfig(configV configV_umap) {
   for (const auto &section : configV_umap) {
     std::cout << "[" << section.first << "]\n";
-
     for (const auto &key : section.second) {
       std::cout << key.first << " = ";
-
       for (const auto &i : key.second) {
         std::cout << i << " ";
       }
-
       std::cout << "\n";
     }
     std::cout << "\n";
   }
 }
-
-// body pf function to genrate a config
 
 void ConfigParser::generateConfigFile(const std::string &filename) {
   std::ofstream file(filename);
