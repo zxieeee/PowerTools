@@ -1,29 +1,29 @@
 #include "../include/config.h"
 #include "../include/core.h"
 #include <chrono>
-#include <thread>
 #include <filesystem>
 #include <iostream>
+#include <thread>
 
-int main() 
-{
+int main() {
   ConfigParser configParser;
+  fileOperations fileoperation;
   configParser.parseConfigFile("include/config.txt");
-  configParser.printConfig();
-  configParser.generateConfigFileInteractively("include/config.txt");
+  configParser.generateConfigFile("include/config.txt");
+
   std::string sourceDir = SOURCE; // Use the SOURCE directory from core.h
-  std::filesystem::path sourcePath = sourceDir; // Convert to std::filesystem::path
+  std::filesystem::path sourcePath =
+      sourceDir; // Convert to std::filesystem::path
 
   // Initialize last write time
   auto lastWriteTime = std::filesystem::last_write_time(sourcePath);
 
   // Monitor the directory for changes
-  while (true) 
-  {
-    if (isdirectorychanged(sourceDir, lastWriteTime)) 
-    {
+  while (true) {
+    if (isdirectorychanged(sourceDir, lastWriteTime)) {
       std::cout << "Change detected in directory: " << sourceDir << std::endl;
-      movefile_indir(sourceDir); // Re-run the file organization logic
+      fileoperation.moveFileinDir(
+          sourceDir); // Re-run the file organization logic
     }
 
     // Sleep for a while before checking again (e.g., every 5 seconds)
