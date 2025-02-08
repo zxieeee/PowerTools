@@ -1,4 +1,0 @@
-# settings
-[settings]
-time_delay=exit
-

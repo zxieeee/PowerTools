@@ -85,8 +85,10 @@ void fileOperations::moveFileinDir(const std::string &SOURCE,
 
 void fileOperations::organiseFolder(const configV &configV_umap) {
   // key_value key_umap;
+
   std::string SOURCE;
   std::string DEST_PATH;
+
   if (!configV_umap.empty()) {
     for (const auto &section : configV_umap) {
       if (section.first == "settings") {

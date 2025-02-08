@@ -23,7 +23,6 @@ class fileOperations {
 public:
   int SUCCESS;
   std::string getfile_ext(const std::filesystem::path &filename);
-
   int attemptToMove(const std::filesystem::path &file_path,
                     const std::filesystem::path &dest_path);
   std::filesystem::path createFolder(const std::string &DEST_PATH,
