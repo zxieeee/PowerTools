@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <iostream>
 
+// TODO: Implement system level calls to check change in direcotry INOTIFY and
+// Windows read directory
 std::string fileOperations::getfile_ext(const std::filesystem::path &filename) {
   std::string ext = filename.extension().string();
   if (!ext.empty() && ext.front() == '.') {

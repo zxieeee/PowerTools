@@ -5,20 +5,6 @@
 #include <string> // For std::string
 
 // function to see changes in file dir
-#ifdef _WIN32
-bool isdirectorychanged(const std::string &path,
-                        std::filesystem::file_time_type &lastWriteTime);
-const std::string SOURCE =
-    std::string(std::getenv("USERPROFILE")) + "\\Desktop\\test";
-#elif defined(__linux__)
-bool isdirectorychanged(const std::string &path,
-                        std::filesystem::file_time_type &lastWriteTime);
-const std::string SOURCE =
-    std::string(std::getenv("HOME")) + "/Downloads/jpg_folder";
-#else
-#error Unsupported Operating System
-#endif
-
 class fileOperations {
 public:
   int SUCCESS;
