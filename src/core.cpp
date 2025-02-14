@@ -113,5 +113,3 @@ void fileOperations::organise_folder(const configV &configV_umap) {
     }
   }
 }
-
-
