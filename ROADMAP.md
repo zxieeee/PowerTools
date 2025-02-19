@@ -1,10 +1,11 @@
 # Goals
 
 - [ ] Program as a daemon or a service.
-  - [ ] read from a config.conf file where some config like
-  - [ ] folder or folders (could be Desktop and Downloads folder or much more) where our program will work( contains data about a directory )
+  - [x] read from a config.conf file where some config like
+  - [x] folder or folders (could be Desktop and Downloads folder or much more) where our program will work( contains data about a directory )
   - [ ] add a delay timer for program ( if possible implement OS specific APIs using inotify and ReadDirectoryChangesW in code itself so that we can deprecate this variable in future)
-  - [ ] a map that contains folders and extension check the .conf file example
+  - [x] a map that contains folders and extension check the .conf file example
+  - [ ] config reorganisation for sensible human readable format 💡
 
 ---
 
@@ -13,12 +14,10 @@
   - [ ] implementing User preferred folders ( do give an option to let the user choose using the respective platform filepicker APIs)
   - [ ] Implementing Stop and Start(saves config and restart) button for the running status of service
   - [ ] Support for themes light dark or native and accent color
-  - [ ]
 
 ---
 
 - [ ] Code 🏆
-
   - [ ] config file generation after reading data from GTKTEXTVIEW and other VARIABLES (gui has lots of work to do so things may change)
   - [ ] First Read from the config.conf file
   - [x] the runs the directory iterator and if file found of some name and extension place it in their respective place and then wait for the native APIs to give you signal that some file is changed in file system.
@@ -26,8 +25,8 @@
   - [ ] logic for Starting and Stopping as stated under GUI is still left to do
 
 - [ ] Discussion
-  - [x] Related to using GUI Framekwork - GTK was chosen
-  - [ ] Use of native APIs for smaller tasks or inclusion of thirdparty cross platform libraries
+  - [x] Related to using GUI Framework - GTK was chosen
+  - [ ] Use of native APIs for smaller tasks or inclusion of third party cross platform libraries
 
 ## Config.conf file
 

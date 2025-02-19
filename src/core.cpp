@@ -53,18 +53,18 @@ int fileOperations::attemptToMove(const std::filesystem::path &file_path,
 // }
 // TODO: Implement getPathFromConfig function
 
-void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
-  std::filesystem::path SourceDir(SOURCE);
-  for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
-    if (std::filesystem::is_regular_file(file)) {
-      std::string ext = getfile_ext(file);
-      std::filesystem::path file_path(file);
-      std::filesystem::path folder(ext + "_folder");
-      std::filesystem::path dest_path = createFolder(SourceDir, folder);
-      SUCCESS = attemptToMove(file_path, dest_path);
-    }
-  }
-}
+// void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
+//   std::filesystem::path SourceDir(SOURCE);
+//   for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
+//     if (std::filesystem::is_regular_file(file)) {
+//       std::string ext = getfile_ext(file);
+//       std::filesystem::path file_path(file);
+//       std::filesystem::path folder(ext + "_folder");
+//       std::filesystem::path dest_path = createFolder(SourceDir, folder);
+//       SUCCESS = attemptToMove(file_path, dest_path);
+//     }
+//   }
+// }
 
 void fileOperations::moveFileinDir(const std::string &SOURCE,
                                    const std::string &DEST_PATH,
