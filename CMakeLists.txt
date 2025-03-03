@@ -5,6 +5,7 @@ project(gtk_multimedia_organiser)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directories for gtkmm
@@ -21,6 +22,7 @@ set(SRC_FILES
     src/main.cpp
     src/core.cpp
     src/config.cpp
+    src/dirMonitor_windows.cpp
 )
 add_executable(gtk_multimedia_organiser ${SRC_FILES} )
 

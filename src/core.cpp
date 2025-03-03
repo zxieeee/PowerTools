@@ -1,7 +1,6 @@
 #include "../include/core.h"
 #include <filesystem>
 #include <iostream>
-#include <string_view>
 
 // TODO: Implement system level calls to check change in direcotry INOTIFY and
 // Windows read directory
@@ -90,7 +89,9 @@ void fileOperations::moveFileinDir(const std::string &SOURCE,
   }
 }
 
-void fileOperations::organiseFolder(const std::string &CONFIG) {
+std::vector<std::string>
+fileOperations::organiseFolder(const std::string &CONFIG) {
+  std::vector<std::string> SOURCEs;
   configV configV_umap;
   key_value keyvalue;
   std::string SOURCE;
@@ -107,6 +108,7 @@ void fileOperations::organiseFolder(const std::string &CONFIG) {
         if (configV_umap.count(section.first) &&
             configV_umap.at(section.first).count("source_path")) {
           SOURCE = configV_umap.at(section.first).at("source_path")[0];
+          SOURCEs.push_back(SOURCE);
           if (configV_umap.count(section.first) &&
               configV_umap.at(section.first).count("dest_path")) {
             DEST_PATH = configV_umap.at(section.first).at("dest_path")[0];
@@ -114,8 +116,13 @@ void fileOperations::organiseFolder(const std::string &CONFIG) {
             DEST_PATH = SOURCE;
           }
         }
-        moveFileinDir(SOURCE, DEST_PATH, section.second);
+        if (std::filesystem::exists(SOURCE)) {
+          moveFileinDir(SOURCE, DEST_PATH, section.second);
+        } else {
+          continue;
+        }
       }
     }
   }
+  return SOURCEs;
 }

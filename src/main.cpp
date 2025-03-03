@@ -1,11 +1,16 @@
 #include "../include/core.h"
+#include "../include/dirMonitor.h"
 
 int main() {
-  fileOperations fileoperation;
-  if (std::filesystem::exists(CONIG)) {
-    fileoperation.organiseFolder(CONFIG);
+  DirMonitor dirmonitor;
+  std::vector<std::string> SOURCEs;
+  if (std::filesystem::exists(CONFIG)) {
+    SOURCEs = dirmonitor.organiseFolder(CONFIG);
   } else {
     std::exit(64);
   }
-  return 0;
+
+  dirmonitor.startMonitor
+
+      return 0;
 }

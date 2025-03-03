@@ -6,9 +6,7 @@
 
 class DirMonitor : public fileOperations {
 public:
-  virtual void startMonitoring(const std::string &SOURCE) = 0;
+  virtual void startMonitoring(const std::vector<string> &SOURCE) = 0;
   virtual ~DirMonitor() {}
+  static std::unique_ptr<DirMonitor> create();
 };
-
-// Factory function to create an instance (defined per OS)
-// DirMonitor *createDirMonitor();
