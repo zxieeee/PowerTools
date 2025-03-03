@@ -1,3 +1,10 @@
+# First Alpha Release Notice
+
+We are preparing to release our first alpha realease. We implemented the core logic for organising files within a folder or if you want now you can establish a relationship with entirely different folders.
+
+
+
+
 # Goals
 
 - [ ] Program as a daemon or a service.
@@ -18,6 +25,7 @@
 ---
 
 - [ ] Code 🏆
+
   - [ ] config file generation after reading data from GTKTEXTVIEW and other VARIABLES (gui has lots of work to do so things may change)
   - [ ] First Read from the config.conf file
   - [x] the runs the directory iterator and if file found of some name and extension place it in their respective place and then wait for the native APIs to give you signal that some file is changed in file system.

@@ -1,6 +1,7 @@
 #include "../include/core.h"
 #include <filesystem>
 #include <iostream>
+#include <string_view>
 
 // TODO: Implement system level calls to check change in direcotry INOTIFY and
 // Windows read directory
@@ -53,18 +54,18 @@ int fileOperations::attemptToMove(const std::filesystem::path &file_path,
 // }
 // TODO: Implement getPathFromConfig function
 
-// void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
-//   std::filesystem::path SourceDir(SOURCE);
-//   for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
-//     if (std::filesystem::is_regular_file(file)) {
-//       std::string ext = getfile_ext(file);
-//       std::filesystem::path file_path(file);
-//       std::filesystem::path folder(ext + "_folder");
-//       std::filesystem::path dest_path = createFolder(SourceDir, folder);
-//       SUCCESS = attemptToMove(file_path, dest_path);
-//     }
-//   }
-// }
+void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
+  std::filesystem::path SourceDir(SOURCE);
+  for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
+    if (std::filesystem::is_regular_file(file)) {
+      std::string ext = getfile_ext(file);
+      std::filesystem::path file_path(file);
+      std::filesystem::path folder(ext + "_folder");
+      std::filesystem::path dest_path = createFolder(SourceDir, folder);
+      SUCCESS = attemptToMove(file_path, dest_path);
+    }
+  }
+}
 
 void fileOperations::moveFileinDir(const std::string &SOURCE,
                                    const std::string &DEST_PATH,
@@ -89,9 +90,12 @@ void fileOperations::moveFileinDir(const std::string &SOURCE,
   }
 }
 
-void fileOperations::organiseFolder(const configV &configV_umap) {
+void fileOperations::organiseFolder(const std::string &CONFIG) {
+  configV configV_umap;
+  key_value keyvalue;
   std::string SOURCE;
   std::string DEST_PATH;
+  configV_umap = parseConfigFile(CONFIG);
 
   if (!configV_umap.empty()) {
     for (const auto &section : configV_umap) {

@@ -1,21 +1,17 @@
-#include "../include/global.h"
-#include <iostream>
+#include "../include/dirMonitor.h"
 #include <windows.h>
 
-int main() {
+void DirMonitor::startMonitoring(const std::string &SOURCE) {
   LPCSTR path = SOURCE;
   HANDLE changes;
   DWORD dwWaitStatus;
-  BOOL do_something;
   changes =
-      FindFirstChangeNotification(path, FALSE, FILE_NOTIFY_CHANGE_FILE_NAME);
+      FindFirstChangeNotification(path, FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE);
   while (true) {
     dwWaitStatus = WaitForSingleObject(changes, INFINITE);
     if (dwWaitStatus == WAIT_OBJECT_0) {
-      do_something = FindNextChangeNotification(changes);
-      std::cout << do_something << std::endl;
-      if (do_something) {
-        std::cout << "did something" << std::endl;
+      if (FindNextChangeNotification(changes)) {
+        organiseFolder(CONFIG);
       }
     }
   }

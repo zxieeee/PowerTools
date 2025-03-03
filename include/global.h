@@ -14,15 +14,11 @@ struct path {
 };
 
 #ifdef _WIN32
-bool isdirectorychanged(const std::string &path,
-                        std::filesystem::file_time_type &lastWriteTime);
-const std::string config_path =
-    std::string(std::getenv("USERPROFILE")) + "\\Desktop\\test";
+const std::string CONFIG =
+    std::string(std::getenv("APPDATA")) + "\\gtk_organiser\\config.conf";
 #elif defined(__linux__)
-bool isdirectorychanged(const std::string &path,
-                        std::filesystem::file_time_type &lastWriteTime);
-const std::string config_path =
-    std::string(std::getenv("HOME")) + ".config/Powertools/config.conf";
+const std::string CONFIG =
+    std::string(std::getenv("HOME")) + ".config/gtk_organiser/config.conf";
 #else
 #error Unsupported Operating System
 #endif
