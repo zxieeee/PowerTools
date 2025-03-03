@@ -61,7 +61,7 @@ void fileOperations::defaultMoveBehaviour(const std::string &SOURCE) {
       std::string ext = getfile_ext(file);
       std::filesystem::path file_path(file);
       std::filesystem::path folder(ext + "_folder");
-      std::filesystem::path dest_path = createFolder(SourceDir, folder);
+      std::filesystem::path dest_path = createFolder(SOURCE, folder);
       SUCCESS = attemptToMove(file_path, dest_path);
     }
   }

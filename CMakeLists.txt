@@ -5,6 +5,7 @@ project(gtk_multimedia_organiser)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directories for gtkmm
 find_package(PkgConfig REQUIRED)

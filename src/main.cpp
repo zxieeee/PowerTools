@@ -1,12 +1,11 @@
-#include "../include/config.h"
 #include "../include/core.h"
-#include <chrono>
-#include <filesystem>
-#include <iostream>
-#include <thread>
 
-// global variables
 int main() {
-  fileoperation.organiseFolder(CONFIG);
+  fileOperations fileoperation;
+  if (std::filesystem::exists(CONIG)) {
+    fileoperation.organiseFolder(CONFIG);
+  } else {
+    std::exit(64);
+  }
   return 0;
 }
