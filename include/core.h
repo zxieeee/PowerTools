@@ -15,8 +15,7 @@ public:
                                      const std::filesystem::path &folder);
   // TODO:(zxieee) path getPathfromConfig(const configV &configV_umap);
   void defaultMoveBehaviour(const std::string &SOURCE,
-                                   const std::string &DEST_PATH
-);
+                            const std::string &DEST_PATH);
   void moveFileinDir(const std::string &SOURCE, const std::string &DEST_PATH,
                      const key_value &key_umap);
   std::vector<std::string> organiseFolder(const std::string &CONFIG);

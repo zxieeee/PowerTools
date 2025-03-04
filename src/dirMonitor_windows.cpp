@@ -1,7 +1,7 @@
 #ifdef _WIN32
+#include <windows.h>
 #define WIN32_LEAN_AND_MEAN
 #include "../include/dirMonitor.h"
-#include <windows.h>
 #include <errhandlingapi.h>
 #include <iostream>
 #include <memory>
@@ -14,7 +14,7 @@ void DirMonitor::startMonitoring(const std::vector<std::string> &SOURCEs) {
   HANDLE change;
   LPCSTR path;
   for (const auto &SOURCE : SOURCEs) {
-    path= SOURCE.c_str();
+    path = SOURCE.c_str();
     change =
         FindFirstChangeNotification(path, FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE);
 
@@ -32,7 +32,7 @@ void DirMonitor::startMonitoring(const std::vector<std::string> &SOURCEs) {
     if (dwWaitStatus >= 0) {
       if (FindNextChangeNotification(changes[dwWaitStatus - WAIT_OBJECT_0])) {
         Sleep(8000);
-       organiseFolder(CONFIG);
+        organiseFolder(CONFIG);
       }
     }
   }

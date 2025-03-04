@@ -54,8 +54,7 @@ int fileOperations::attemptToMove(const std::filesystem::path &file_path,
 // TODO: Implement getPathFromConfig function
 
 void fileOperations::defaultMoveBehaviour(const std::string &SOURCE,
-                                   const std::string &DEST_PATH
-                                          ) {
+                                          const std::string &DEST_PATH) {
   std::filesystem::path SourceDir(SOURCE);
   for (const auto &file : std::filesystem::directory_iterator(SOURCE)) {
     if (std::filesystem::is_regular_file(file)) {
@@ -119,10 +118,10 @@ fileOperations::organiseFolder(const std::string &CONFIG) {
           }
         }
         if (std::filesystem::exists(SOURCE)) {
-          if(section.second.size()>1){
+          if (section.second.size() > 1) {
             moveFileinDir(SOURCE, DEST_PATH, section.second);
-          }else{
-            defaultMoveBehaviour(SOURCE,DEST_PATH); 
+          } else {
+            defaultMoveBehaviour(SOURCE, DEST_PATH);
           }
         } else {
           continue;

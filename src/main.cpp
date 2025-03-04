@@ -10,8 +10,7 @@ int main() {
     std::exit(64);
   }
 
-    std::cout<< "itworked"<<"\n";
-dirmonitor.startMonitoring(SOURCEs);
+  dirmonitor.startMonitoring(SOURCEs);
 
   return 0;
 }
