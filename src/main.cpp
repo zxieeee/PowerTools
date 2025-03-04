@@ -1,5 +1,5 @@
-#include "../include/core.h"
 #include "../include/dirMonitor.h"
+#include <iostream>
 
 int main() {
   DirMonitor dirmonitor;
@@ -10,7 +10,8 @@ int main() {
     std::exit(64);
   }
 
-  dirmonitor.startMonitor
+    std::cout<< "itworked"<<"\n";
+dirmonitor.startMonitoring(SOURCEs);
 
-      return 0;
+  return 0;
 }
