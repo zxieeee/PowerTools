@@ -16,6 +16,7 @@ if(UNIX AND NOT CMAKE_CROSSCOMPILING)
     src/main.cpp
     src/core.cpp
     src/config.cpp
+    src/dirMonitor_linux.cpp
 )
   # Find GTKMM on Linux
   find_package(PkgConfig REQUIRED)
@@ -37,7 +38,8 @@ if(CMAKE_CROSSCOMPILING)
     src/main.cpp
     src/core.cpp
     src/config.cpp
-    src/dirMonitor_windows.cpp
+    src/dirMonitor_win.cpp
+    src/systray_win.cpp
 )
   # Set Windows-specific compiler
   set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
@@ -47,6 +49,6 @@ if(CMAKE_CROSSCOMPILING)
   set(WINDOWS_LIBS user32 kernel32)
 
   # Create Windows executable
-  add_executable(gtk_multimedia_organiser ${SRC_FILES})
+  add_executable(gtk_multimedia_organiser WIN32 ${SRC_FILES})
   target_link_libraries(gtk_multimedia_organiser ${WINDOWS_LIBS})
 endif()

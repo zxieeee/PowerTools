@@ -1,7 +1,6 @@
-#ifdef _WIN32
+#include "../include/dirMonitor.h"
 #include <windows.h>
 #define WIN32_LEAN_AND_MEAN
-#include "../include/dirMonitor.h"
 #include <errhandlingapi.h>
 #include <iostream>
 #include <memory>
@@ -46,4 +45,3 @@ void DirMonitor::startMonitoring(const std::vector<std::string> &SOURCEs) {
 // static std::unique_ptr<DirMonitor> DirMonitor::create() {
 //   return std::make_unique<DirMonitor>();
 // }
-#endif

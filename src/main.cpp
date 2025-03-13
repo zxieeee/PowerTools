@@ -1,7 +1,9 @@
 #include "../include/dirMonitor.h"
-#include <iostream>
+#include "../include/systray_win.h"
+#include <thread>
 
 int main() {
+  HINSTANCE hInstance = GetModuleHandle(NULL);
   DirMonitor dirmonitor;
   std::vector<std::string> SOURCEs;
   if (std::filesystem::exists(CONFIG)) {
@@ -9,8 +11,10 @@ int main() {
   } else {
     std::exit(64);
   }
+  std::thread monitoringThread(&DirMonitor::startMonitoring, &dirmonitor,
+                               SOURCEs);
+  SysTrayApp app(hInstance);
+  monitoringThread.join();
 
-  dirmonitor.startMonitoring(SOURCEs);
-
-  return 0;
+  return app.Run();
 }
