@@ -1,18 +1,12 @@
 # First Alpha Release Notice
 
-We are preparing to release our first alpha realease. We implemented the core logic for organising files within a folder or if you want now you can establish a relationship with entirely different folders.
-
-
-
+We are preparing to release our first alpha release. We implemented the core logic for organising files within a folder or if you want now you can establish a relationship with entirely different folders.
 
 # Goals
 
-- [ ] Program as a daemon or a service.
-  - [x] read from a config.conf file where some config like
-  - [x] folder or folders (could be Desktop and Downloads folder or much more) where our program will work( contains data about a directory )
-  - [ ] add a delay timer for program ( if possible implement OS specific APIs using inotify and ReadDirectoryChangesW in code itself so that we can deprecate this variable in future)
-  - [x] a map that contains folders and extension check the .conf file example
-  - [ ] config reorganisation for sensible human readable format 💡
+- [ ] implement a sync feature wherein two folders can be synced with the same contents ( this feature is most helpful when done over lan)
+- [ ] implement search networks over lan
+- [ ] implement modules or modularity
 
 ---
 
@@ -26,15 +20,10 @@ We are preparing to release our first alpha realease. We implemented the core lo
 
 - [ ] Code 🏆
 
-  - [ ] config file generation after reading data from GTKTEXTVIEW and other VARIABLES (gui has lots of work to do so things may change)
   - [ ] First Read from the config.conf file
   - [x] the runs the directory iterator and if file found of some name and extension place it in their respective place and then wait for the native APIs to give you signal that some file is changed in file system.
   - [x] then a movefiles_indir() before executing make sure you don't overwrite the already present file and rename the file with filename1.extension. MoveFile() Should read file in the folder not in sub folders/\*. as soon as it read it moves the file if a file is not presetn there already.
   - [ ] logic for Starting and Stopping as stated under GUI is still left to do
-
-- [ ] Discussion
-  - [x] Related to using GUI Framework - GTK was chosen
-  - [ ] Use of native APIs for smaller tasks or inclusion of third party cross platform libraries
 
 ## Config.conf file
 

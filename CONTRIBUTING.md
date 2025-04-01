@@ -9,12 +9,11 @@ Welcome! 🎉 We're excited you're considering contributing to the repo. Whether
 make sure you have C and C++ compiler already setup. You can follow any video online to get started
 
 ```
-git clone https://github.com/zxieeee/gtk_multimedia_organiser.git
+git clone https://github.com/zxieeee/PowerTools.git
 ```
 
 3. To build
 
 ```
-g++ src/main.cpp src/core.cpp -o gtk_multimedia_organiser
+g++ src/main.cpp src/core.cpp -o PowerTools
 ```
-

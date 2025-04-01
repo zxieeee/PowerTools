@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set your project name
-project(gtk_multimedia_organiser)
+project(PowerTools)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -26,9 +26,8 @@ if(UNIX AND NOT CMAKE_CROSSCOMPILING)
   include_directories(${GTKMM_INCLUDE_DIRS})
   link_directories(${GTKMM_LIBRARY_DIRS})
   add_definitions(${GTKMM_CFLAGS_OTHER})
-
-  add_executable(gtk_multimedia_organiser ${SRC_FILES})
-  target_link_libraries(gtk_multimedia_organiser ${GTKMM_LIBRARIES})
+  add_executable(PowerTools ${SRC_FILES})
+  target_link_libraries(PowerTools ${GTKMM_LIBRARIES})
 endif()
 
 if(CMAKE_CROSSCOMPILING)
@@ -49,6 +48,6 @@ if(CMAKE_CROSSCOMPILING)
   set(WINDOWS_LIBS user32 kernel32)
 
   # Create Windows executable
-  add_executable(gtk_multimedia_organiser WIN32 ${SRC_FILES})
-  target_link_libraries(gtk_multimedia_organiser ${WINDOWS_LIBS})
+  add_executable(PowerTools ${SRC_FILES})
+  target_link_libraries(PowerTools ${WINDOWS_LIBS})
 endif()

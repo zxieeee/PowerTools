@@ -1,5 +1,4 @@
 #include "../include/dirMonitor.h"
-#include "../include/systray_win.h"
 #include <thread>
 
 int main() {

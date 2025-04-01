@@ -1,4 +1,4 @@
-# gtk_multimedia_organiser
+# PowerTools
 
 The aim of this project is to organise multimedia files present in a folder by creating or taking categorised subfolders.
 
@@ -8,8 +8,8 @@ for instance, we have some files in download folder that are images, videos, pdf
 
 you would need a configuration file called config.conf (when you install it from the official installer you can find the config file already present in the diretory specified below)
 
-**Windows** : type %APPDATA% in the file manager there you could see the folder gtk_multimedia_organiser(the folder contains a dummy config file all commented)
-**Linux** : configuration file is in the .config folder inside gtk_multimedia_organiser(the folder contains the dummy file all commented)
+**Windows** : type %APPDATA% in the file manager there you could see the folder PowerTools(the folder contains a dummy config file all commented)
+**Linux** : configuration file is in the .config folder inside PowerTools(the folder contains the dummy file all commented)
 
 Some things to keep in mind:
 
@@ -17,7 +17,7 @@ Some things to keep in mind:
 2. `dest_path` is optional ( if not specified destination path would be the source path itself)
 3. you can only specify the source path then the program will organise file one the basis of extension
 
-``` Config.conf
+```Config.conf
 # source directory 1
 [source_directory_1]
 source_path = C:\Users\{USER_NAME}\Downloads
