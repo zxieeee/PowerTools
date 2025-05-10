@@ -1,0 +1,90 @@
+==========================
+ Client-Server File Sharing Log
+==========================
+
+📅 DATE: 10 May 2025
+💻 SYSTEM: Windows OS (64-bit)
+🧰 TOOLCHAIN: MSYS2 (g++) / MinGW / Windows Terminal
+
+--------------------------
+1. Project Directory Setup
+--------------------------
+✅ Created a folder:
+   C:\Users\sjgwa\Desktop\hello
+
+✅ Files placed:
+   - server.cpp      ← C++ code for the server
+   - client.cpp      ← C++ code for the client
+   - testfile.txt    ← File to be shared from server to client
+
+--------------------------
+2. Code Implementation
+--------------------------
+✏️ Wrote the server code in server.cpp:
+   - Initializes Winsock.
+   - Listens on port 5000.
+   - Sends testfile.txt to client.
+
+✏️ Wrote the client code in client.cpp:
+   - Connects to server on localhost (127.0.0.1).
+   - Receives file data.
+   - Saves as received.txt.
+
+--------------------------
+3. Compiling the Code
+--------------------------
+🛠️ Commands used in MSYS2 (UCRT64 shell):
+
+   g++ server.cpp -o server.exe -lws2_32
+   g++ client.cpp -o client.exe -lws2_32
+
+✅ Both server.exe and client.exe compiled successfully.
+
+--------------------------
+4. Running the Program
+--------------------------
+🧪 Step 1: Ran server.exe
+   Output:
+     Server listening on port 5000...
+
+🧪 Step 2: Ran client.exe
+   Output:
+     File received and saved as 'received.txt'.
+
+✅ File transfer successful.
+
+--------------------------
+5. Errors Faced & Fixes
+--------------------------
+❌ Error: "File not found." on server
+   🔧 Fix: testfile.txt was missing or in wrong directory.
+   ✅ Solution: Placed testfile.txt in same folder as server.exe.
+
+❌ Error: "This app can't run on your PC."
+   🔧 Fix: Recompiled with correct architecture using:
+       g++ server.cpp -o server.exe -lws2_32 -m64
+
+❌ Error: "Bind failed."
+   🔧 Fix: Port 5000 was already in use or required admin rights.
+   ✅ Solution: Killed processes or ran terminal as administrator.
+
+--------------------------
+6. Verification
+--------------------------
+✅ Client received "received.txt".
+✅ Contents matched "testfile.txt".
+✅ Transfer was complete and error-free.
+
+--------------------------
+7. Next Improvements (Optional)
+--------------------------
+🔁 Add support for filename request.
+📁 Allow transfer of any file type (images, PDFs).
+🔒 Implement authentication or encryption (SSL/TLS).
+
+--------------------------
+🧾 Summary
+--------------------------
+Client and Server file sharing using Winsock in C++ was implemented successfully. Files were compiled with g++ and executed without runtime issues after addressing path and permission problems.
+
+==========================
